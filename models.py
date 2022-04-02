@@ -10,4 +10,4 @@ class Pet(db.Model):
     lon = db.Column(db.Float)
 
     def __repr__(self):
-        return '<Pet %r>' % (self.name)
+        return '<Pet %r>' % (self.name
