@@ -34,6 +34,9 @@ def runData():
 
     x = mycol.insert_many(data)
 
+    return render_template("index.html")
+
+
 
 # create route that renders index.html template
 
