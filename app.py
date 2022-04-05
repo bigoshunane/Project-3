@@ -45,6 +45,11 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/map")
+def app():
+    return render_template("map.html")
+
+
 # Query the database and send the jsonified results
 
 if __name__ == "__main__":
