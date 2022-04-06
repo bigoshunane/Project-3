@@ -44,11 +44,12 @@ def runData():
 def index():
     return render_template("index.html")
 
-
 @app.route("/map")
-def app():
-    return render_template("map.html")
+def map():
+    return render_template("index.html")
 
+
+# Query the database and send the jsonified results
 
 # Query the database and send the jsonified results
 
