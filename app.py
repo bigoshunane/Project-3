@@ -46,7 +46,7 @@ def index():
 
 @app.route("/map")
 def map():
-    return render_template("map.html")
+    return render_template("mapColor.html")
 
 
 # Query the database and send the jsonified results
