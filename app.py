@@ -36,9 +36,7 @@ def runData():
 
     return render_template("index.html")
 
-
-
-# create route that renders index.html template
+# create route that renders templates
 
 @app.route("/")
 def index():
@@ -48,10 +46,20 @@ def index():
 def map():
     return render_template("mapColor.html")
 
+@app.route("/continents")
+def download():
+    with open('data/countriesTile.geojson') as f:
+        data = json.load(f)
+        return data
 
-# Query the database and send the jsonified results
+@app.route("/michelin")
+def restaurantsDownload():
+    with open("data/2021CountryContinent.json") as f:
+        data = json.load(f)
+        return michelinRestaurants
 
-# Query the database and send the jsonified results
+
+
 
 if __name__ == "__main__":
     app.run()
