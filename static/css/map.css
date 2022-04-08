@@ -1,0 +1,9 @@
+#map {
+  width: 95%;
+  height: 500px;
+  margin: 10px auto
+}
+
+.leaflet-container {
+  background-color: #c5e8ff;
+}
