@@ -20,25 +20,29 @@ d3.json(dataPath).then(function(michelin_data){
 
     // loop throught the data
     for (var i = 0; i < michelin_data.length; i++) {
-      var latitude = michelin_data[i].Latitude;
-      var longitude = michelin_data[i].Longitude;
-      var restaurant = michelin_data[i]['Restaurant Name'];
-      var website = michelin_data[i]['WebsiteUrl'];
-      var award = michelin_data[i].Award;
+      var latitude = michelin_data[i].latitude;
+      var restaurant = michelin_data[i].restaurant;
+      var address = michelin_data[i].address;
+      var city = michelin_data[i].city;
+      var country = michelin_data[i].country;
+      var continent = michelin_data[i].continent;
+      var cuisine = michelin_data[i].cuisine;
+      var longitude = michelin_data[i].longitude;
+      var latitude = michelin_data[i].latitude;
+      var website = michelin_data[i].website;
+      var award = michelin_data[i].award;
       var price = michelin_data[i].price;
-      var cuisine = michelin_data[i].Cuisine;
 
       // check for the location property.
       if (latitude) {
         markers.addLayer(L.marker([latitude, longitude])
-          .bindPopup(response[i].descriptor));
+          .bindPopup(michelin_data[i].restaurant));
       }
     };
 
     // Add our marker cluster layer to the map.
     myMap.addLayer(markers);
 
-    console.log(lattitude,longitude,restaurant,website,award,price,cuisine)
 
 });
 
@@ -93,9 +97,9 @@ d3.json(dataPath).then(function (data) {
         },
       });
       // Giving each feature a popup with information that's relevant to it
-      layer.bindPopup(
-        "<h1>" + feature.properties.admin + "</h1> <hr> <h2>" + feature.properties.economy + "</h2>"
-      );
+      //layer.bindPopup(
+      //  "<h1>" + feature.properties.admin + "</h1> <hr> <h2>" + feature.properties.economy + "</h2>"
+      //);
     },
   }).addTo(myMap);
 });
