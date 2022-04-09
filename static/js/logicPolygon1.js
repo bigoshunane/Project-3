@@ -9,24 +9,24 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(myMap);
 
-
-var michelin = "/michelinData";
+// Use this path to get the Michelin data.
+var dataPath = "/michelin";
 
 // get the data with d3
-d3.json(michelin).then(function(response){
+d3.json(dataPath).then(function(michelin_data){
 
     // create a new marker cluster group.
     var markers = L.markerClusterGroup();
 
     // loop throught the data
-    for (var i = 0; i < response.length; i++) {
-      var latitude = response[i].Latitude;
-      var longitude = response[i].Longitude;
-      var restaurant = response[i]['Restaurant Name'];
-      var website = response[i]['WebsiteUrl'];
-      var award = response[i].Award;
-      var price = response[i].price;
-      var cuisine = response[i].Cuisine;
+    for (var i = 0; i < michelin_data.length; i++) {
+      var latitude = michelin_data[i].Latitude;
+      var longitude = michelin_data[i].Longitude;
+      var restaurant = michelin_data[i]['Restaurant Name'];
+      var website = michelin_data[i]['WebsiteUrl'];
+      var award = michelin_data[i].Award;
+      var price = michelin_data[i].price;
+      var cuisine = michelin_data[i].Cuisine;
 
       // check for the location property.
       if (latitude) {
