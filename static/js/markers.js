@@ -1,0 +1,98 @@
+var markers = [
+  {
+    name: 'Armador',
+    url: 'http://www.restaurant-amador.com/',
+    lat: 48.2540114,
+    lng: 16.3586003,
+  },
+  {
+    name: 'Zilte',
+    url: 'https://www.zilte.be/',
+    lat: 51.2287189,
+    lng: 4.4049639,
+  },
+  {
+    name: 'Per Se',
+    url: '',
+    lat: 40.7680545,
+    lng: -73.9825882,
+  },
+  {
+    name: 'Hof van Cleve',
+    url: 'https://www.hofvancleve.com/',
+    lat: 50.9039501,
+    lng: 3.5098648,
+  },
+  {
+    name: 'Xin Rong Ji (Xinyuan South Road)',
+    url: 'https://guide.michelin.com/en/beijing-municipality/beijing/restaurant/xin-rong-ji-xinyuan-south-road',
+    lat: 39.94638,
+    lng: 116.450148,
+  },
+  {
+    name: 'Taian Table',
+    url: 'https://taian-table.cn/',
+    lat: 31.221807,
+    lng: 121.474049,
+  },
+  {
+    name: 'Robuchon au Dôme',
+    url: 'https://www.grandlisboahotels.com/',
+    lat: 22.189949,
+    lng: 113.54395,
+  },
+  {
+    name: 'Le Louis XV - Alain Ducasse à lHôtel de Paris',
+    url: 'https://www.ducasse-paris.com/',
+    lat: 43.7391839,
+    lng: 7.4271047,
+  },
+  {
+    name: 'Alinea',
+    url: 'https://en.wikipedia.org/wiki/The_Netherlands',
+    lat: 41.9132737,
+    lng: -87.648174,
+  },
+  {
+    name: 'Pierre Gagnaire',
+    url: 'https://www.pierregagnaire.com/',
+    lat: 48.8732506,
+    lng: 2.3003862,
+  },
+  {
+    name: 'LOSIER',
+    url: '',
+    lat: 35.6696524,
+    lng: 139.761233,
+  },
+  {
+    name: 'The Inn at Little Washington',
+    url: '',
+    lat: 38.7134767,
+    lng: -78.1595348,
+  },
+  {
+    name: 'Odette',
+    url: '',
+    lat: 1.2896459,
+    lng: 103.8516,
+  },
+  {
+    name: 'LEnclume',
+    url: '',
+    lat: 54.2017254,
+    lng: -2.9538566,
+  },
+  {
+    name: 'Manresa',
+    url: '',
+    lat: 37.22761,
+    lng: -121.98071,
+  },
+  {
+    name: 'The French Laundry',
+    url: '',
+    lat: 38.40443,
+    lng: -122.36474,
+  },
+]

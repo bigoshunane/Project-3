@@ -23,29 +23,79 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 
-@app.route("/run-data")
+
+conn = 'mongodb://localhost:27017'
+client = pymongo.MongoClient(conn)
+db = client["michelin"]
+collection = db["restaurants"]
+
+# update the data base
+@app.route("/postData")
 def runData():
     with open('data/2021CountryContinent.json') as f:
       data = json.load(f)
 
-    client = pymongo.MongoClient("mongodb://localhost:27017/")
-    mydb = client["michelin"]
-    mycol = mydb["restaurants"]
-
-    x = mycol.insert_many(data)
+    x = collection.insert_many(data)
 
     return render_template("index.html")
 
+# create routes that call data
+
+@app.route("/continents")
+def download():
+    with open('data/countriesTile.geojson') as f:
+        data = json.load(f)
+        return data
+
+@app.route("/michelin")
+def getMichelinData():
+
+    data = collection.find()
+    michelin_data = []
+    for d in data:
+        buffer = {
+            "restaurant": d['Restaurant'],
+            "address": d['Address'],
+            "city": d['City'],
+            "country": d['Country'],
+            "continent": d['Continent'],
+            "cuisine": d['Cuisine'],
+            "longitude": d['Longitude'],
+            "latitude": d['Latitude'],
+            "website": d['WebsiteUrl'],
+            "award": d['Award'],
+            "price": d['Price'],
+        }
+        michelin_data.append(buffer)
+    return jsonify(michelin_data)
 
 
-# create route that renders index.html template
+
+# @app.route("/michelin")
+# def restaurantsDownload():
+#    with open("data/2021CountryContinent.json") as f:
+#        data = json.load(f)
+#        return michelinRestaurants
+
+
+#################################################
+# Template Setup
+#################################################
+
+# create route that renders templates
 
 @app.route("/")
 def index():
     return render_template("index.html")
 
+@app.route("/map")
+def map():
+    return render_template('mapColor.html')
 
-# Query the database and send the jsonified results
+
+
+
+
 
 if __name__ == "__main__":
     app.run()
