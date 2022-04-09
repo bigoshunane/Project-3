@@ -39,11 +39,8 @@ d3.json(dataPath).then(function(michelin_data){
           .bindPopup(michelin_data[i].restaurant));
       }
     };
-
     // Add our marker cluster layer to the map.
     myMap.addLayer(markers);
-
-
 });
 
 
@@ -96,10 +93,6 @@ d3.json(dataPath).then(function (data) {
           myMap.fitBounds(event.target.getBounds());
         },
       });
-      // Giving each feature a popup with information that's relevant to it
-      //layer.bindPopup(
-      //  "<h1>" + feature.properties.admin + "</h1> <hr> <h2>" + feature.properties.economy + "</h2>"
-      //);
     },
   }).addTo(myMap);
 });
