@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>The World</title>
 
+
   <!-- Leaflet JavaScript code -->
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
@@ -37,6 +38,10 @@
   <!-- map div -->
   <div id="map"></div>
 
+  <!-- load data -->
+  <script type="text/javascript">
+            var michelin_data = {{ data }}
+  </script>
 
   <!-- JavaScript file -->
   <script type="text/javascript" src="/static/js/logicPolygon1.js"></script>
