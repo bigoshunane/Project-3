@@ -50,22 +50,23 @@ def download():
 @app.route("/michelin")
 def getMichelinData():
 
-    data = collection.find_one()
-    michelin_data = {}
+    data = collection.find()
+    michelin_data = []
     for d in data:
-        michelin_data[d] = {
-            "restaurant": michelin_data['Restaurant Name'],
-            "address": michelin_data['Address'],
-            "city": michelin_data['City'],
-            "country": michelin_data['Country'],
-            "continent": michelin_data['Continent'],
-            "cuisine": michelin_data['Cuisine'],
-            "longitude": michelin_data['Longitude'],
-            "latitude": michelin_data['Latitude'],
-            "website": michelin_data['WebsiteUrl'],
-            "award": michelin_data['Award'],
-            "price": michelin_data['price'],
-        },
+        buffer = {
+            "restaurant": d['Restaurant'],
+            "address": d['Address'],
+            "city": d['City'],
+            "country": d['Country'],
+            "continent": d['Continent'],
+            "cuisine": d['Cuisine'],
+            "longitude": d['Longitude'],
+            "latitude": d['Latitude'],
+            "website": d['WebsiteUrl'],
+            "award": d['Award'],
+            "price": d['Price'],
+        }
+        michelin_data.append(buffer)
     return jsonify(michelin_data)
 
 
@@ -89,7 +90,7 @@ def index():
 
 @app.route("/map")
 def map():
-    return render_template('mapColor.html', data=michelin_data)
+    return render_template('mapColor.html')
 
 
 

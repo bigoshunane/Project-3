@@ -38,7 +38,7 @@ d3.json(dataPath).then(function(michelin_data){
     // Add our marker cluster layer to the map.
     myMap.addLayer(markers);
 
-    //console.log(lattitude,longitude,restaurant,website,award,price,cuisine)
+    console.log(lattitude,longitude,restaurant,website,award,price,cuisine)
 
 });
 
