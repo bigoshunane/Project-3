@@ -9,41 +9,10 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 }).addTo(myMap);
 
-// Use this path to get the Michelin data.
-var dataPath = "/michelin";
 
-// get the data with d3
-d3.json(dataPath).then(function(michelin_data){
-
-    // create a new marker cluster group.
-    var markers = L.markerClusterGroup();
-
-    // loop throught the data
-    for (var i = 0; i < michelin_data.length; i++) {
-      var latitude = michelin_data[i].latitude;
-      var restaurant = michelin_data[i].restaurant;
-      var address = michelin_data[i].address;
-      var city = michelin_data[i].city;
-      var country = michelin_data[i].country;
-      var continent = michelin_data[i].continent;
-      var cuisine = michelin_data[i].cuisine;
-      var longitude = michelin_data[i].longitude;
-      var latitude = michelin_data[i].latitude;
-      var website = michelin_data[i].website;
-      var award = michelin_data[i].award;
-      var price = michelin_data[i].price;
-
-      // check for the location property.
-      if (latitude) {
-        markers.addLayer(L.marker([latitude, longitude])
-          .bindPopup(michelin_data[i].restaurant));
-      }
-    };
-    // Add our marker cluster layer to the map.
-    myMap.addLayer(markers);
-});
-
-
+// ******************************************
+// --------- Create Continent Color Overlay  --------
+// ******************************************
 
 // Use this link to get the GeoJSON data.
 var dataPath = "/continents";
@@ -95,4 +64,43 @@ d3.json(dataPath).then(function (data) {
       });
     },
   }).addTo(myMap);
+});
+
+
+// ******************************************
+// --------- Create Marker Cluster --------
+// ******************************************
+
+// Use this path to get the Michelin data.
+var dataPath = "/michelin";
+
+// get the data with d3
+d3.json(dataPath).then(function(michelin_data){
+
+    // create a new marker cluster group.
+    var markers = L.markerClusterGroup();
+
+    // loop throught the data
+    for (var i = 0; i < michelin_data.length; i++) {
+      var latitude = michelin_data[i].latitude;
+      var restaurant = michelin_data[i].restaurant;
+      var address = michelin_data[i].address;
+      var city = michelin_data[i].city;
+      var country = michelin_data[i].country;
+      var continent = michelin_data[i].continent;
+      var cuisine = michelin_data[i].cuisine;
+      var longitude = michelin_data[i].longitude;
+      var latitude = michelin_data[i].latitude;
+      var website = michelin_data[i].website;
+      var award = michelin_data[i].award;
+      var price = michelin_data[i].price;
+
+      // check for the location property.
+      if (latitude) {
+        markers.addLayer(L.marker([latitude, longitude])
+          .bindPopup(michelin_data[i].restaurant));
+      }
+    };
+    // Add our marker cluster layer to the map.
+    myMap.addLayer(markers);
 });
