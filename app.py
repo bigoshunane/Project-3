@@ -39,14 +39,18 @@ def runData():
 
     return render_template("index.html")
 
-# create routes that call data
+#################################################
+# Data APIs
+#################################################
 
+# get continents geoJson
 @app.route("/continents")
 def download():
     with open('data/countriesTile.geojson') as f:
         data = json.load(f)
         return data
 
+# get michelin data
 @app.route("/michelin")
 def getMichelinData():
 
@@ -69,13 +73,32 @@ def getMichelinData():
         michelin_data.append(buffer)
     return jsonify(michelin_data)
 
+# get top 10 cuisines
+@app.route("/Top10Cuisines")
+def getTop10Cuisines():
 
+    with open('data/2021CountryContinent.json') as f:
+      data = json.load(f)
 
-# @app.route("/michelin")
-# def restaurantsDownload():
-#    with open("data/2021CountryContinent.json") as f:
-#        data = json.load(f)
-#        return michelinRestaurants
+    cuisines = {}
+
+    for d in data:
+        if not d["Cuisine"] in cuisines:
+            cuisines[d["Cuisine"]] = 0
+        cuisines[d["Cuisine"]] += 1
+
+    cuisineList = []
+    for k in cuisines.keys():
+        cuisineList.append((k, cuisines[k]))
+
+    def sortFunc(e):
+        return e[1]
+
+    cuisineList.sort(key=sortFunc, reverse=True)
+    print (cuisineList[:10])
+
+    return jsonify(cuisineList[:10])
+
 
 
 #################################################
@@ -91,9 +114,6 @@ def index():
 @app.route("/map")
 def map():
     return render_template('mapColor.html')
-
-
-
 
 
 
