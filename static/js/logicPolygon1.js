@@ -5,10 +5,22 @@ var myMap = L.map("map", {
 });
 
 // Adding the tile layer
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+var street = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+});//.addTo(myMap)
+
+var topo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
 }).addTo(myMap);
 
+var baseMaps = {
+  "Street Map": street,
+  "Topographic Map": topo
+};
+//////////////////////////////////
+L.control.layers(baseMaps,  {
+}).addTo(myMap);
+///////////////////////////////////
 // Use this path to get the Michelin data.
 var dataPath = "/michelin";
 
@@ -36,7 +48,7 @@ d3.json(dataPath).then(function(michelin_data){
       // check for the location property.
       if (latitude) {
         markers.addLayer(L.marker([latitude, longitude])
-          .bindPopup(michelin_data[i].restaurant));
+          .bindPopup("<br>Restaurant: </br>" + michelin_data[i].restaurant + "<br>Award:</br>" + michelin_data[i].award + "<br>Cuisine:</br>" + michelin_data[i].cuisine + '<br><a href="'+ michelin_data[i].website +  '">Website</a></br>' ));
       }
     };
 
@@ -45,7 +57,16 @@ d3.json(dataPath).then(function(michelin_data){
 
 
 });
-
+let darkRed =     '#732229';
+let beige =       '#F2F2F2';
+let fireRed =     '#F22738';
+let red =         '#A61723';
+let pink =        '#F22E52';
+let darkOrange =  '#E8790C';
+let fireOrange =  '#FFA40D';
+let redOrange =   '#FF5900';
+let black =       '#000000';
+let white =       '#ffffff';
 
 
 // Use this link to get the GeoJSON data.
@@ -53,11 +74,11 @@ var dataPath = "/continents";
 
 function chooseColor(continent) {
   switch(continent) {
-    case "North America": return "yellow";
-    case "South America": return "red";
-    case "Europe": return "blue";
-    case "Asia": return "pink";
-    default: return "black";
+    case "North America": return fireRed;
+    case "South America": return red;
+    case "Europe": return fireOrange;
+    case "Asia": return pink;
+    default: return redOrange;
   }
 }
 
@@ -68,7 +89,7 @@ d3.json(dataPath).then(function (data) {
     style: function (feature) {
       return {
         color: "#9a9a9a",
-        // Call the chooseColor() function to decide which color to color our neighborhood. (The color is based on the borough.)
+        // Call the chooseColor() function to decide which color to color the continents.
         fillColor: chooseColor(feature.properties.continent),
         fillOpacity: 0.5,
         weight: 1.2
@@ -77,18 +98,18 @@ d3.json(dataPath).then(function (data) {
     onEachFeature: function (feature, layer) {
       // Set the mouse events to change the map styling.
       layer.on({
-        // When a user's mouse cursor touches a map feature, the mouseover event calls this function, which makes that feature's opacity change to 90% so that it stands out.
+        // When a user's mouse cursor touches a map feature, the mouseover event calls this function.
         mouseover: function (event) {
           layer = event.target;
           layer.setStyle({
-            fillOpacity: 0.9,
+            fillOpacity: 0.8,
           });
         },
-        // When the cursor no longer hovers over a map feature (that is, when the mouseout event occurs), the feature's opacity reverts back to 50%.
+        // When the cursor no longer hovers over a map feature it reverts to original
         mouseout: function (event) {
           layer = event.target;
           layer.setStyle({
-            fillOpacity: 0.5,
+            fillOpacity: 0.3,
           });
         },
         // When a feature (neighborhood) is clicked, it enlarges to fit the screen.
@@ -96,10 +117,12 @@ d3.json(dataPath).then(function (data) {
           myMap.fitBounds(event.target.getBounds());
         },
       });
-      // Giving each feature a popup with information that's relevant to it
-      //layer.bindPopup(
-      //  "<h1>" + feature.properties.admin + "</h1> <hr> <h2>" + feature.properties.economy + "</h2>"
-      //);
-    },
+      },
+
   }).addTo(myMap);
+
 });
+
+//L.control.layers(baseMaps),  {
+//}).addTo(myMap);
+//});

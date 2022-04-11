@@ -1,11 +1,14 @@
 
-var dataPath = "/michelin"
+var dataPath = "/michelin";
 
 
 let ratings = ['Bib Gourmand', '1 MICHELIN Star', '2 MICHELIN Stars', '3 MICHELIN Stars']
 let stars = ['1 MICHELIN Star', '2 MICHELIN Stars', '3 MICHELIN Stars']
 let cuisines; // = ['Modern Cuisine', 'Creative', 'Japanese', 'Traditional Cuisine','French', 'Street Food', 'Italian','Classic Cuisine','Regional Cuisine','Cantonese']
 let prices = ['1','2','3','4','5']
+
+
+let colors = [darkRed,red,fireRed,fireOrange,darkOrange]
 
 
 // -------------------------
@@ -45,19 +48,27 @@ let prices = ['1','2','3','4','5']
         let trace1 = {
             values: countArray,
             labels: ratings,
-            type: 'pie'
+            type: 'pie',
+            marker: {
+              line: {
+                color: '#F2F2F2',
+                width: [3,3,3,3],
+              },
+            }
         };
         let pieData = [trace1];
 
         let layout1 = {
-            title: 'Michelin Awards',
             xaxis: {
               title: 'Awards'
             },
+            paper_bgcolor:'rgba(0,0,0,0)',
+            colorway: colors,
+            margin:{t: 0,}
         };
 
         // Render the plot to the div tag with id "pie"
-        Plotly.newPlot("pie", pieData, layout1);
+        Plotly.newPlot("pie", pieData, layout1, {responsive: true});
 
         // -------------------------
         // Cuisine Bar Plot
@@ -101,13 +112,17 @@ let prices = ['1','2','3','4','5']
             };
             let barData = [trace1];
             let layout1 = {
-              title: 'Top 10 Michelin Cuisines',
-              xaxis: {
-                title: 'Cuisine'
-
+              paper_bgcolor:'rgba(0,0,0,0)',
+              plot_bgcolor:'rgba(0,0,0,0)',
+              colorway: [white],
+              font: {
+                family: 'montserrat, sans-serif',
+                size: 14,
+                color: white,
               },
+              margin:{t: 0,}
             };
-            Plotly.newPlot("bar", barData, layout1);
+            Plotly.newPlot("bar", barData, layout1, {responsive: true});
 
               });
         }
@@ -185,7 +200,14 @@ let prices = ['1','2','3','4','5']
 
           let stackLayout = {
             title: 'Price Range per Award',
-            barmode: 'stack'
+            barmode: 'stack',
+            paper_bgcolor:'rgba(0,0,0,0)',
+            colorway: colors,
+            font: {
+              family: 'montserrat, sans-serif',
+              size: 14,
+              color: '#7f7f7f'
+            }
           };
 
          Plotly.newPlot('stack', stackData, stackLayout);
@@ -195,9 +217,16 @@ let prices = ['1','2','3','4','5']
              barmode: 'group',
              bargap: 0.25,
              bargroupgap:0.1,
-             barnorm: 'percent'
+             barnorm: 'percent',
+             paper_bgcolor:'rgba(0,0,0,0)',
+             colorway: colors,
+             font: {
+               family: 'montserrat, sans-serif',
+               size: 14,
+               color: '#7f7f7f'
+             }
            };
-         Plotly.newPlot('bargroup', stackData, barGroupLayout)
+         Plotly.newPlot('bargroup', stackData, barGroupLayout, {responsive: true})
 
       });
     }
