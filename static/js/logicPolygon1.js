@@ -48,7 +48,7 @@ d3.json(dataPath).then(function(michelin_data){
       // check for the location property.
       if (latitude) {
         markers.addLayer(L.marker([latitude, longitude])
-          .bindPopup("<br>Restaurant: </br>" + michelin_data[i].restaurant + "<br>Award:</br>" + michelin_data[i].award + "<br>Cuisine:</br>" + michelin_data[i].cuisine + '<br><a href="'+ michelin_data[i].website +  '">Website</a></br>' ));
+          .bindPopup("<strong>Restaurant:</strong></br>" + michelin_data[i].restaurant + "<hr/><br>Award:</br>" + michelin_data[i].award + "<br>Cuisine:</br>" + michelin_data[i].cuisine + '<br><a href="'+ michelin_data[i].website +  '">Website</a></br>' ));
       }
     };
 
@@ -91,7 +91,7 @@ d3.json(dataPath).then(function (data) {
         color: "#9a9a9a",
         // Call the chooseColor() function to decide which color to color the continents.
         fillColor: chooseColor(feature.properties.continent),
-        fillOpacity: 0.5,
+        fillOpacity: 0.2,
         weight: 1.2
       };
     },
@@ -102,7 +102,7 @@ d3.json(dataPath).then(function (data) {
         mouseover: function (event) {
           layer = event.target;
           layer.setStyle({
-            fillOpacity: 0.8,
+            fillOpacity: 0.5,
           });
         },
         // When the cursor no longer hovers over a map feature it reverts to original
