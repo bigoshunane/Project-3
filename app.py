@@ -24,16 +24,18 @@ app = Flask(__name__)
 #################################################
 
 
-conn = 'mongodb://localhost:27017'
+conn = 'mongodb://mongodb+srv://Project-3-Team-1:password_qW1@cluster0.oqnln.mongodb.net/michelin?retryWrites=true&w=majority'
 client = pymongo.MongoClient(conn)
 db = client["michelin"]
 collection = db["restaurants"]
 
 # update the data base
+
+
 @app.route("/postData")
 def runData():
     with open('data/2021CountryContinent.json') as f:
-      data = json.load(f)
+        data = json.load(f)
 
     x = collection.insert_many(data)
 
@@ -44,6 +46,8 @@ def runData():
 #################################################
 
 # get continents geoJson
+
+
 @app.route("/continents")
 def download():
     with open('data/countriesTile.geojson') as f:
@@ -51,6 +55,8 @@ def download():
         return data
 
 # get michelin data
+
+
 @app.route("/michelin")
 def getMichelinData():
 
@@ -74,11 +80,13 @@ def getMichelinData():
     return jsonify(michelin_data)
 
 # get top 10 cuisines
+
+
 @app.route("/Top10Cuisines")
 def getTop10Cuisines():
 
     with open('data/2021CountryContinent.json') as f:
-      data = json.load(f)
+        data = json.load(f)
 
     cuisines = {}
 
@@ -95,10 +103,9 @@ def getTop10Cuisines():
         return e[1]
 
     cuisineList.sort(key=sortFunc, reverse=True)
-    print (cuisineList[:10])
+    print(cuisineList[:10])
 
     return jsonify(cuisineList[:10])
-
 
 
 #################################################
@@ -111,10 +118,10 @@ def getTop10Cuisines():
 def index():
     return render_template("index.html")
 
+
 @app.route("/map")
 def map():
     return render_template('mapColor.html')
-
 
 
 if __name__ == "__main__":
