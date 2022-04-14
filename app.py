@@ -24,7 +24,7 @@ app = Flask(__name__)
 #################################################
 
 
-conn = 'mongodb://ocalhost:27017'
+conn = 'mongodb://localhost:27017'
 client = pymongo.MongoClient(conn)
 db = client["michelin"]
 collection = db["restaurants"]
