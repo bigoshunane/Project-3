@@ -4,7 +4,6 @@ import pandas as pd
 import pymongo
 import json
 from pymongo import MongoClient
-
 import os
 import re
 from flask import (
@@ -22,10 +21,8 @@ app = Flask(__name__)
 #################################################
 # Database Setup
 #################################################
-
-
-conn = 'mongodb://localhost:27017'
-client = pymongo.MongoClient(conn)
+client = pymongo.MongoClient(
+    "mongodb+srv://Project-3-Team-1:password_qW1@cluster0.wukgb.mongodb.net/michelin")
 db = client["michelin"]
 collection = db["restaurants"]
 
