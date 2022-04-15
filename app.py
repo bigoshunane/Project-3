@@ -22,7 +22,7 @@ app = Flask(__name__)
 # Database Setup
 #################################################
 client = pymongo.MongoClient(
-    "mongodb+srv://Project-3-Team-1:password_qW1@cluster0.wukgb.mongodb.net/michelin?retryWrites=true&w=majority")
+    "mongodb+srv://Project-3-Team-1:password_qW1@cluster0.wukgb.mongodb.net/michelin?ssl=true&ssl_cert_reqs=CERT_NONE")
 db = client["michelin"]
 collection = db["restaurants"]
 
