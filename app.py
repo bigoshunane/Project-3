@@ -115,6 +115,10 @@ def getTop10Cuisines():
 def index():
     return render_template("index.html")
 
+@app.route("/machine-learning")
+def machineLearning():
+    return render_template("machine-learning.html")
+
 
 @app.route("/map")
 def map():
