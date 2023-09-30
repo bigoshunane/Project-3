@@ -1,7 +1,7 @@
 
 ### Project-3
 
-The interactive data visualization and web application of michelin star restaurants deployed on heroku is found at [michelin star restaurants  web app ](h[ttps://michelinstars.herokuapp.com](https://michelin-star-restaurants-1640f2601079.herokuapp.com/))
+The interactive data visualization and web application of michelin star restaurants deployed on heroku is found at [michelin star restaurants  web app ](h[ttps://michelinstars.herokuapp.com](https://michelin-star-restaurants-1640f2601079.herokuapp.com/)
 ### Project-4
 
 Non-Michelin-Restaurant reviews predictor via Unsupervised Machine Learning
